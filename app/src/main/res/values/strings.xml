@@ -6,4 +6,6 @@
     <string name="play">Play</string>
     <string name="numRows">Number of rows</string>
     <string name="numCols">Number of columns</string>
+    <string name="you_win">You win !!!</string>
+    <string name="you_lose">You lose!!!  </string>
 </resources>
