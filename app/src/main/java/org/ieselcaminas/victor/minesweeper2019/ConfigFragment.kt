@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import org.ieselcaminas.victor.minesweeper2019.databinding.FragmentConfigBinding
 
 /**
@@ -22,6 +24,10 @@ class ConfigFragment : Fragment() {
         val binding: FragmentConfigBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_config,
             container, false)
+        binding.buttonPlay.setOnClickListener() {
+            //Navigation.findNavController(it).navigate(R.id.action_configFragment_to_gameFragment)
+            it.findNavController().navigate(R.id.action_configFragment_to_gameFragment)
+        }
         return binding.root
     }
 

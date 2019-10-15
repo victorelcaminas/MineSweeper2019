@@ -15,5 +15,13 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,
             R.layout.activity_main)
 
+        var s: String? = "Hello"
+        println(s.myUppercase())
     }
+
+}
+
+fun String?.myUppercase(): String {
+    if (this == null) {return "[NULL]" }
+    return "[" + this.toUpperCase() + "]"
 }
