@@ -9,7 +9,7 @@
     <string name="you_win">You win !!!</string>
     <string name="you_lose">You lose!!!  </string>
     <string name="text_info">Size: %1$d X %2$d</string>
-    <string name="dificulty">Dificulty</string>
+    <string name="difficulty">Difficulty</string>
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="difficult">Difficult</string>

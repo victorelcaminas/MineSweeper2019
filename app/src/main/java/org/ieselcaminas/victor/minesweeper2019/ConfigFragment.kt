@@ -88,7 +88,21 @@ class ConfigFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                println("Selected " + position)
+                when(position) {
+                    0 -> {
+                        configData.numRows = 10
+                        configData.numCols = 10
+                        }
+                    1 -> {
+                        configData.numRows = 20
+                        configData.numCols = 30
+                        }
+                    2 -> {
+                        configData.numRows = 40
+                        configData.numCols = 50
+                        }
+                }
+                binding.invalidateAll()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
