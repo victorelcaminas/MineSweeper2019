@@ -36,7 +36,7 @@ class ConfigFragment : Fragment() {
             container, false)
         binding.buttonPlay.setOnClickListener() {
             //Navigation.findNavController(it).navigate(R.id.action_configFragment_to_gameFragment)
-            it.findNavController().navigate(R.id.action_configFragment_to_gameFragment)
+            it.findNavController().navigate(ConfigFragmentDirections.actionConfigFragmentToGameFragment(configData.numRows, configData.numCols))
         }
         binding.editTextCols.addTextChangedListener() {
             try {

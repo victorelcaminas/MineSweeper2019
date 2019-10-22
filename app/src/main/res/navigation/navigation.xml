@@ -23,6 +23,12 @@
         <action
             android:id="@+id/action_gameFragment_to_looseFragment"
             app:destination="@id/looseFragment" />
+        <argument
+            android:name="numRows"
+            app:argType="integer" />
+        <argument
+            android:name="numCols"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/wonFragment"
