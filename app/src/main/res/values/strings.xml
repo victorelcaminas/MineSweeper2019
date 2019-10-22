@@ -13,4 +13,6 @@
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="difficult">Difficult</string>
+    <string name="about_text">Blah, Blah, Blah about</string>
+    <string name="about">About</string>
 </resources>
