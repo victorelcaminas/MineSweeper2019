@@ -19,10 +19,14 @@
         android:label="GameFragment" >
         <action
             android:id="@+id/action_gameFragment_to_wonFragment"
-            app:destination="@id/wonFragment" />
+            app:destination="@id/wonFragment"
+            app:popUpTo="@+id/configFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_gameFragment_to_looseFragment"
-            app:destination="@id/looseFragment" />
+            app:destination="@id/looseFragment"
+            app:popUpTo="@+id/configFragment"
+            app:popUpToInclusive="false" />
         <argument
             android:name="numRows"
             app:argType="integer" />
