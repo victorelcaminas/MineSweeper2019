@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import org.ieselcaminas.victor.minesweeper2019.databinding.FragmentGameBinding
@@ -27,13 +28,18 @@ class GameFragment : Fragment() {
             false)
 
         binding.buttonWin.setOnClickListener() {
-            it.findNavController().navigate(R.id.action_gameFragment_to_wonFragment)
+            it.findNavController().navigate(GameFragmentDirections.actionGameFragmentToWonFragment())
         }
 
         binding.buttonLose.setOnClickListener() {
-            it.findNavController().navigate(R.id.action_gameFragment_to_looseFragment)
+            it.findNavController().navigate(GameFragmentDirections.actionGameFragmentToLooseFragment())
         }
 
+        var args = GameFragmentArgs.fromBundle(arguments!!)
+        var numRows = args.numRows
+        var numCols = args.numCols
+        Toast.makeText(context, "Rows = $numRows Cols = $numCols",
+            Toast.LENGTH_LONG).show()
 
         return binding.root
     }

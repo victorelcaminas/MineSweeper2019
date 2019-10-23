@@ -10,9 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import kotlinx.android.synthetic.main.fragment_config.*
 import org.ieselcaminas.victor.minesweeper2019.databinding.FragmentConfigBinding
 import java.lang.NumberFormatException
 
@@ -25,6 +23,7 @@ class ConfigFragment : Fragment() {
 
     var configData = ConfigData(10,10)
     lateinit var binding: FragmentConfigBinding
+    var x: String = "hello";
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +35,7 @@ class ConfigFragment : Fragment() {
             container, false)
         binding.buttonPlay.setOnClickListener() {
             //Navigation.findNavController(it).navigate(R.id.action_configFragment_to_gameFragment)
-            it.findNavController().navigate(R.id.action_configFragment_to_gameFragment)
+            it.findNavController().navigate(ConfigFragmentDirections.actionConfigFragmentToGameFragment(configData.numCols,configData.numRows))
         }
         binding.editTextCols.addTextChangedListener() {
             try {
@@ -68,19 +67,24 @@ class ConfigFragment : Fragment() {
     private fun setSpinner() {
 
         // Initializing a String Array
-        val optionsStr = arrayOf(getString(R.string.easy),getString(R.string.medium),getString(R.string.difficult))
+        val optionsStr = arrayOf(getString(R.string.easy),
+                                getString(R.string.medium),
+                                getString(R.string.difficult))
 
         // Initializing an ArrayAdapter
-        val adapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, optionsStr)
+        val adapter = ArrayAdapter(context!!,
+            android.R.layout.simple_spinner_item, optionsStr)
 
         // Set the drop down view resource
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        adapter.setDropDownViewResource(
+            android.R.layout.simple_dropdown_item_1line)
 
         // Finally, data bind the spinner object with dapter
         binding.spinner.adapter = adapter
 
         // Set an on item selected listener for spinner object
-        binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+        binding.spinner.onItemSelectedListener =
+                object: AdapterView.OnItemSelectedListener{
 
             override fun onItemSelected(
                 parent: AdapterView<*>?,
