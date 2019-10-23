@@ -40,4 +40,9 @@
         android:name="org.ieselcaminas.victor.minesweeper2019.LooseFragment"
         android:label="fragment_lose"
         tools:layout="@layout/fragment_lose" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="org.ieselcaminas.victor.minesweeper2019.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

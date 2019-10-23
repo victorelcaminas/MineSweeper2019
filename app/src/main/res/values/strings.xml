@@ -7,6 +7,8 @@
     <string name="numRows">Number of rows</string>
     <string name="numCols">Number of columns</string>
     <string name="you_win">You win !!!</string>
+    <string name="share">Share</string>
+    <string name="share_success_text">I have won in awesom MineSwipper by Victor Alonso</string>
     <string name="you_lose">You lose!!!  </string>
     <string name="text_info">Size: %1$d X %2$d</string>
     <string name="difficulty">Difficulty</string>

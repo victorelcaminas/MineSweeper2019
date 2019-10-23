@@ -2,15 +2,14 @@ package org.ieselcaminas.victor.minesweeper2019
 
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import org.ieselcaminas.victor.minesweeper2019.databinding.FragmentConfigBinding
 import java.lang.NumberFormatException
 
@@ -56,6 +55,8 @@ class ConfigFragment : Fragment() {
             }
             binding.invalidateAll()
         }
+
+        setHasOptionsMenu(true)
 
         setSpinner()
 
@@ -113,6 +114,17 @@ class ConfigFragment : Fragment() {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item,
+            view!!.findNavController())
 
     }
 
