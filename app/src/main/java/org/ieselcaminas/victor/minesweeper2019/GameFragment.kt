@@ -32,7 +32,7 @@ class GameFragment : Fragment() {
         }
 
         binding.buttonLose.setOnClickListener() {
-            it.findNavController().navigate(GameFragmentDirections.actionGameFragmentToLooseFragment())
+            it.findNavController().navigate(GameFragmentDirections.actionGameFragmentToLoseFragment())
         }
 
         var args = GameFragmentArgs.fromBundle(arguments!!)

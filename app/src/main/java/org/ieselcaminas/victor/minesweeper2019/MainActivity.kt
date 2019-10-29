@@ -29,7 +29,3 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-fun String?.myUppercase(): String {
-    if (this == null) {return "[NULL]" }
-    return "[" + this.toUpperCase() + "]"
-}
