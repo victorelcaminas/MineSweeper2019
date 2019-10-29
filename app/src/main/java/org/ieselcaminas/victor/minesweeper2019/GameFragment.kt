@@ -17,6 +17,9 @@ import org.ieselcaminas.victor.minesweeper2019.databinding.FragmentGameBinding
 class GameFragment : Fragment() {
 
     lateinit var binding: FragmentGameBinding
+    lateinit var board: Array<Array<MineButton>>
+    var numRows: Int = 0
+    var numCols: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +39,29 @@ class GameFragment : Fragment() {
         }
 
         var args = GameFragmentArgs.fromBundle(arguments!!)
-        var numRows = args.numRows
-        var numCols = args.numCols
+        numRows = args.numRows
+        numCols = args.numCols
         Toast.makeText(context, "Rows = $numRows Cols = $numCols",
             Toast.LENGTH_LONG).show()
 
+        createButtons()
+
         return binding.root
+    }
+
+
+    private fun createButtons() {
+        /*var boardTemp = Array<MineButton>(numRows)
+        board = arrayOf(boardTemp) */
+
+        board = Array(numRows) { row ->
+                Array(numCols) { col ->
+                MineButton(context!!, row,col)
+            }
+        }
+
+
+
     }
 
 
