@@ -29,7 +29,7 @@ class MineButton(context: Context, var row: Int, var col: Int): ImageButton(cont
                     button.background = getDrawable(context, R.drawable.boton)
                 }
             }
-            true
+            false
         }
 
 

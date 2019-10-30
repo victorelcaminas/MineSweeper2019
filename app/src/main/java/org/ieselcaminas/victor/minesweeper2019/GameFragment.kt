@@ -52,9 +52,9 @@ class GameFragment : Fragment() {
 
 
     private fun createButtons() {
-        board = Array(numCols) { col ->
-                Array(numRows) { row ->
-                MineButton(context!!, row,col)
+        board = Array(numRows) { row ->
+                Array(numCols) { col ->
+                MineButton(context!!, row, col)
             }
         }
         binding.gridLayout.columnCount = numCols
