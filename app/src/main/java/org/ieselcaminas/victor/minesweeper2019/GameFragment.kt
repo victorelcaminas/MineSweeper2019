@@ -52,8 +52,8 @@ class GameFragment : Fragment() {
 
 
     private fun createButtons() {
-        board = Array(numRows) { row ->
-                Array(numCols) { col ->
+        board = Array(numCols) { col ->
+                Array(numRows) { row ->
                 MineButton(context!!, row,col)
             }
         }
@@ -62,6 +62,9 @@ class GameFragment : Fragment() {
         for (line in board) {
             for (button in line) {
                 binding.gridLayout.addView(button)
+                button.setOnClickListener() {
+                    println("row: ${button.row} col: ${button.col}")
+                }
             }
         }
 
