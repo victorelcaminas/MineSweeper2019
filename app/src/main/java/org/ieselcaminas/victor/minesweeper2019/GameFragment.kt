@@ -59,14 +59,22 @@ class GameFragment : Fragment() {
         }
         binding.gridLayout.columnCount = numCols
         binding.gridLayout.rowCount = numRows
-        for (line in board) {
+        for (row in 0..numRows-1) {
+            for (col in 0..numCols-1) {
+                binding.gridLayout.addView(board[row][col])
+                board[row][col].setOnClickListener() {
+                    println("row: ${board[row][col].row} col: ${board[row][col].col}")
+                }
+            }
+        }
+        /* for (line in board) {
             for (button in line) {
                 binding.gridLayout.addView(button)
                 button.setOnClickListener() {
                     println("row: ${button.row} col: ${button.col}")
                 }
             }
-        }
+        } */
 
 
     }
