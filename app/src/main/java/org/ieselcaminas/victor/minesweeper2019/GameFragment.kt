@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import kotlinx.android.synthetic.main.fragment_game.*
 import org.ieselcaminas.victor.minesweeper2019.databinding.FragmentGameBinding
 
 /**
@@ -51,15 +52,18 @@ class GameFragment : Fragment() {
 
 
     private fun createButtons() {
-        /*var boardTemp = Array<MineButton>(numRows)
-        board = arrayOf(boardTemp) */
-
         board = Array(numRows) { row ->
                 Array(numCols) { col ->
                 MineButton(context!!, row,col)
             }
         }
-
+        binding.gridLayout.columnCount = numCols
+        binding.gridLayout.rowCount = numRows
+        for (line in board) {
+            for (button in line) {
+                binding.gridLayout.addView(button)
+            }
+        }
 
 
     }
