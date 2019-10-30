@@ -5,7 +5,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getDrawable
 
 
@@ -17,7 +19,15 @@ class MineButton(context: Context, var row: Int, var col: Int): ImageButton(cont
     public var state: StateType = StateType.CLOSED
 
     init {
+
+
         layoutParams = LinearLayout.LayoutParams(SIZE, SIZE)
+
+        setPadding(0,0,0,0)
+        scaleType = ImageView.ScaleType.CENTER
+        adjustViewBounds = true
+
+        setImageDrawable(ContextCompat.getDrawable(context, R.drawable.flag))
         setBackground(getDrawable(context, R.drawable.boton))
         setOnTouchListener() { view: View, event: MotionEvent ->
             val button: MineButton = view as MineButton
