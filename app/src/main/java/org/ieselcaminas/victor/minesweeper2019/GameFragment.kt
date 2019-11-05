@@ -19,6 +19,7 @@ class GameFragment : Fragment() {
 
     lateinit var binding: FragmentGameBinding
     lateinit var board: Array<Array<MineButton>>
+    lateinit var bombMatrix: BombMatrix
     var numRows: Int = 0
     var numCols: Int = 0
 
@@ -42,6 +43,7 @@ class GameFragment : Fragment() {
         var args = GameFragmentArgs.fromBundle(arguments!!)
         numRows = args.numRows
         numCols = args.numCols
+        bombMatrix = BombMatrix(numRows, numCols, (numRows * numCols) / 6)
         Toast.makeText(context, "Rows = $numRows Cols = $numCols",
             Toast.LENGTH_LONG).show()
 

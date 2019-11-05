@@ -39,6 +39,9 @@ class MineButton(context: Context, var row: Int, var col: Int): ImageButton(cont
                     button.background = getDrawable(context, R.drawable.boton)
                 }
             }
+            when (state) {
+                StateType.CLOSED -> { setImageDrawable(ContextCompat.getDrawable(context, R.drawable.flag)) }
+            }
             false
         }
 
