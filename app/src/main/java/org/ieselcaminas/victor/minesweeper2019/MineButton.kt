@@ -10,16 +10,16 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getDrawable
 
+const val SIZE = 50
 
 class MineButton(context: Context, var row: Int, var col: Int): ImageButton(context) {
 
     //var row: Int = row
     //var col: Int = col
-    val SIZE = 50
+
     public var state: StateType = StateType.CLOSED
 
     init {
-
 
         layoutParams = LinearLayout.LayoutParams(SIZE, SIZE)
 
@@ -27,7 +27,7 @@ class MineButton(context: Context, var row: Int, var col: Int): ImageButton(cont
         scaleType = ImageView.ScaleType.CENTER
         adjustViewBounds = true
 
-        setImageDrawable(ContextCompat.getDrawable(context, R.drawable.flag))
+        //setImageDrawable(ContextCompat.getDrawable(context, R.drawable.flag))
         setBackground(getDrawable(context, R.drawable.boton))
         setOnTouchListener() { view: View, event: MotionEvent ->
             val button: MineButton = view as MineButton
@@ -39,10 +39,24 @@ class MineButton(context: Context, var row: Int, var col: Int): ImageButton(cont
                     button.background = getDrawable(context, R.drawable.boton)
                 }
             }
-            when (state) {
-                StateType.CLOSED -> { setImageDrawable(ContextCompat.getDrawable(context, R.drawable.flag)) }
-            }
             false
+        }
+
+        setOnLongClickListener {
+            when (state) {
+                StateType.CLOSED -> { state = StateType.FLAG
+                    setImageDrawable(ContextCompat.getDrawable(context, R.drawable.flag))
+                }
+                StateType.FLAG -> { state = StateType.QUESTION
+                    setImageDrawable(ContextCompat.getDrawable(context, R.drawable.question))
+                }
+                StateType.QUESTION -> { state = StateType.CLOSED
+                    setImageDrawable(null)
+                }
+            }
+            true
+
+
         }
 
 

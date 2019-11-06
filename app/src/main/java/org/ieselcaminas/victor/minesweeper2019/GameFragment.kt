@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import kotlinx.android.synthetic.main.fragment_game.*
 import org.ieselcaminas.victor.minesweeper2019.databinding.FragmentGameBinding
 
 /**
@@ -49,23 +51,38 @@ class GameFragment : Fragment() {
 
         createButtons()
 
+        for (i in -1 .. 5) {
+            println(i)
+        }
+
         return binding.root
     }
 
 
     private fun createButtons() {
-        board = Array(numRows) { row ->
-                Array(numCols) { col ->
+        board = Array(numCols) { col ->
+            Array(numRows) { row ->
                 MineButton(context!!, row, col)
             }
         }
         binding.gridLayout.columnCount = numCols
         binding.gridLayout.rowCount = numRows
-        for (row in 0..numRows-1) {
-            for (col in 0..numCols-1) {
-                binding.gridLayout.addView(board[row][col])
+        for (col in 0..numCols-1) {
+            for (row in 0..numRows-1) {
+                var frameLayout = FrameLayout(context!!)
+                val backgroundImageView = ImageView(context!!)
+                backgroundImageView.setImageResource(R.drawable.back)
+                setSizeBackView(backgroundImageView)
+                frameLayout.addView(backgroundImageView)
+                frameLayout.addView(board[row][col])
+                binding.gridLayout.addView(frameLayout)
                 board[row][col].setOnClickListener() {
-                    println("row: ${board[row][col].row} col: ${board[row][col].col}")
+                    val button = it as MineButton
+                    if (button.state == StateType.CLOSED) {
+                        println("row: ${button.row} col: ${button.col}")
+                        button.visibility = View.INVISIBLE
+                    }
+
                 }
             }
         }
@@ -79,6 +96,14 @@ class GameFragment : Fragment() {
         } */
 
 
+    }
+
+    private fun setSizeBackView(backgroundImageView: ImageView) {
+        var layoutParams = LinearLayout.LayoutParams(SIZE, SIZE)
+        backgroundImageView.setPadding(0, 0, 0, 0)
+        backgroundImageView.scaleType = ImageView.ScaleType.CENTER
+        backgroundImageView.adjustViewBounds = true
+        backgroundImageView.layoutParams = layoutParams
     }
 
 
