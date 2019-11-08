@@ -51,17 +51,13 @@ class GameFragment : Fragment() {
 
         createButtons()
 
-        for (i in -1 .. 5) {
-            println(i)
-        }
-
         return binding.root
     }
 
 
     private fun createButtons() {
-        board = Array(numCols) { col ->
-            Array(numRows) { row ->
+        board = Array(numRows) { row ->
+            Array(numCols) { col ->
                 MineButton(context!!, row, col)
             }
         }
@@ -74,13 +70,20 @@ class GameFragment : Fragment() {
                 backgroundImageView.setImageResource(R.drawable.back)
                 setSizeBackView(backgroundImageView)
                 frameLayout.addView(backgroundImageView)
+
+
                 frameLayout.addView(board[row][col])
+                board[row][col].alpha = 0.7f
                 binding.gridLayout.addView(frameLayout)
                 board[row][col].setOnClickListener() {
                     val button = it as MineButton
                     if (button.state == StateType.CLOSED) {
+
+                        open(button.row, button.col)
+
+
                         println("row: ${button.row} col: ${button.col}")
-                        button.visibility = View.INVISIBLE
+                       // button.visibility = View.INVISIBLE
                     }
 
                 }
@@ -95,6 +98,28 @@ class GameFragment : Fragment() {
             }
         } */
 
+
+    }
+
+    private fun open(row: Int, col: Int) {
+        if (!bombMatrix.isValid(row, col)) {
+            return
+        }
+        board[row][col].state = StateType.OPEN
+        board[row][col].visibility = View.INVISIBLE
+        if (bombMatrix.value(row, col) != 0) { return }
+
+        for (i in row -1 .. row + 1) {
+            for (j in col -1 .. col +1) {
+                if (bombMatrix.isValid(i,j)) {
+                    if (!(i == row && j == col) &&
+                        board[i][j].state == StateType.CLOSED) {
+                        open(i, j)
+                    }
+                }
+
+            }
+        }
 
     }
 

@@ -46,7 +46,7 @@ class BombMatrix(val numRows: Int, val numCols: Int, numBombs: Int ) {
         board[row][col] = counter
     }
 
-    private fun isValid(row: Int, col: Int): Boolean {
+    fun isValid(row: Int, col: Int): Boolean {
         if (row < 0 || row >= numRows) {
             return false
         }
@@ -79,5 +79,8 @@ class BombMatrix(val numRows: Int, val numCols: Int, numBombs: Int ) {
     }
 
 
+    public fun value(row: Int, col: Int): Int {
+        return board[row][col]
+    }
 
 }

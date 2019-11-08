@@ -18,6 +18,7 @@ class MineButton(context: Context, var row: Int, var col: Int): ImageButton(cont
     //var col: Int = col
 
     public var state: StateType = StateType.CLOSED
+    public var imageView: ImageView? = null
 
     init {
 
