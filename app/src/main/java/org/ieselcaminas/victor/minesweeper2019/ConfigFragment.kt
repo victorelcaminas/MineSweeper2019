@@ -46,6 +46,8 @@ class ConfigFragment : Fragment() {
             binding.invalidateAll()
         }
 
+        binding.editTextRows.addTextChangedListener() { }
+
         binding.editTextRows.addTextChangedListener() {
             try {
                 configData.numRows = it.toString().toInt()

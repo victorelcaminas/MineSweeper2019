@@ -9,10 +9,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getDrawable
+import androidx.navigation.findNavController
 
-const val SIZE = 50
+const val SIZE = 100
+var flagsCounter = 0
 
-class MineButton(context: Context, var row: Int, var col: Int): ImageButton(context) {
+
+class MineButton(context: Context, var row: Int, var col: Int,
+                 var flagListner: FlagListener): ImageButton(context) {
 
     //var row: Int = row
     //var col: Int = col
@@ -44,12 +48,15 @@ class MineButton(context: Context, var row: Int, var col: Int): ImageButton(cont
         }
 
         setOnLongClickListener {
+
             when (state) {
                 StateType.CLOSED -> { state = StateType.FLAG
                     setImageDrawable(ContextCompat.getDrawable(context, R.drawable.flag))
+                    flagListner.addFlag()
                 }
                 StateType.FLAG -> { state = StateType.QUESTION
                     setImageDrawable(ContextCompat.getDrawable(context, R.drawable.question))
+                    flagListner.removeFlag()
                 }
                 StateType.QUESTION -> { state = StateType.CLOSED
                     setImageDrawable(null)

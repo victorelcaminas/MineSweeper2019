@@ -17,13 +17,27 @@ import org.ieselcaminas.victor.minesweeper2019.databinding.FragmentGameBinding
 /**
  * A simple [Fragment] subclass.
  */
-class GameFragment : Fragment() {
+
+interface FlagListener {
+    fun addFlag()
+    fun removeFlag()
+}
+
+class GameFragment : Fragment(), FlagListener {
 
     lateinit var binding: FragmentGameBinding
     lateinit var board: Array<Array<MineButton>>
     lateinit var bombMatrix: BombMatrix
     var numRows: Int = 0
     var numCols: Int = 0
+
+    override fun addFlag() {
+
+    }
+
+    override fun removeFlag() {
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +72,7 @@ class GameFragment : Fragment() {
     private fun createButtons() {
         board = Array(numRows) { row ->
             Array(numCols) { col ->
-                MineButton(context!!, row, col)
+                MineButton(context!!, row, col, this)
             }
         }
         binding.gridLayout.columnCount = numCols
